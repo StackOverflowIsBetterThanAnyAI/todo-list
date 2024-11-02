@@ -1,0 +1,197 @@
+* {
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen and (min-width: 440px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    input {
+        font-size: 0.875rem;
+    }
+
+    label:not([for='low']):not([for='medium']):not([for='high']) {
+        font-size: 1.125rem;
+    }
+
+    label[for='low'],
+    label[for='medium'],
+    label[for='high'] {
+        font-size: 1rem;
+    }
+
+    main {
+        grid-template: auto / repeat(auto-fill, minmax(384px, 1fr));
+    }
+
+    .newTodoContainer > div:first-of-type > div,
+    .todoContainer > div:first-of-type > div {
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input {
+        font-size: 0.75rem;
+    }
+
+    label:not([for='low']):not([for='medium']):not([for='high']) {
+        font-size: 1rem;
+    }
+
+    label[for='low'],
+    label[for='medium'],
+    label[for='high'] {
+        font-size: 0.875rem;
+    }
+
+    main {
+        grid-template: auto / auto;
+    }
+
+    .newTodoContainer > div:first-of-type > div,
+    .todoContainer > div:first-of-type > div {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+body {
+    overflow: auto;
+}
+
+button {
+    background-color: rgb(234, 234, 234);
+    border-radius: 6px;
+    color: rgb(255, 19, 19);
+    outline: rgb(16, 16, 16) solid 2px;
+    padding: 4px 8px;
+}
+
+button:disabled {
+    background-color: rgb(212, 209, 209);
+    outline: none;
+}
+
+button:disabled:hover {
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background-color: rgb(213, 206, 206);
+    cursor: pointer;
+    outline: rgb(16, 16, 16) solid 2px;
+}
+
+button:active:not(:disabled) {
+    background-color: rgb(168, 162, 162);
+    outline: rgb(37, 37, 37) solid 2px;
+}
+
+form {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+h1 {
+    padding: 16px;
+}
+
+html {
+    background-color: #f8e4a2;
+}
+
+input {
+    padding: 4px;
+}
+
+main {
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+}
+
+textarea {
+    font-size: 0.75rem;
+    min-width: 50%;
+    padding: 4px;
+    resize: none;
+}
+
+.newTodoContainer,
+.todoContainer {
+    background-color: rgb(251, 191, 71);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.newTodoContainer > div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.todoContainer > div:first-of-type {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.todoContainer > div:first-of-type > :first-child {
+    margin: auto auto auto 0;
+}
+
+.high {
+    outline: rgb(255, 15, 15) solid 4px;
+}
+
+.low {
+    outline: rgb(255, 251, 251) solid 4px;
+}
+
+.medium {
+    outline: rgb(230, 150, 0) solid 4px;
+}
+
+.editPriority {
+    display: flex;
+    gap: 8px;
+}
+
+#editTodo {
+    background-color: #ceb562;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    left: 50%;
+    outline: solid 4px rgb(255, 251, 251);
+    padding: 16px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+}
+
+#editTodo > div,
+#editTodo > form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: space-between;
+}
