@@ -6,6 +6,11 @@
     padding: 0;
 }
 
+*:focus-visible {
+    border-radius: 4px;
+    outline: rgb(28, 28, 28) solid 2px;
+}
+
 @media only screen and (min-width: 440px) {
     h1 {
         font-size: 1.75rem;
@@ -74,7 +79,7 @@ button {
     background-color: rgb(234, 234, 234);
     border-radius: 6px;
     color: rgb(255, 19, 19);
-    outline: rgb(16, 16, 16) solid 2px;
+    outline: rgb(135, 135, 135) solid 2px;
     padding: 4px 8px;
 }
 
