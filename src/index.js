@@ -5,6 +5,58 @@ const description = document.getElementById('description')
 const dueDate = document.getElementById('dueDate')
 const main = document.getElementById('main')
 
+const focusTrap = (e) => {
+    if (e.key !== 'Tab') return
+    const focussable = Array.from(
+        document.querySelectorAll('textarea, button, input')
+    ).filter((item) => !item.disabled)
+
+    const active = focussable.indexOf(document.activeElement)
+
+    if (e.shiftKey) {
+        if (active === 0) {
+            e.preventDefault()
+            focussable.at(-1).focus()
+        } else {
+            focussable[active - 1].focus()
+            e.preventDefault()
+        }
+    } else if (active === focussable.length - 1) {
+        e.preventDefault()
+        focussable[0].focus()
+    } else {
+        focussable[active + 1].focus()
+        e.preventDefault()
+    }
+}
+
+const focusTrapEdit = (e) => {
+    if (e.key !== 'Tab') return
+    const focussable = Array.from(
+        document.querySelectorAll(
+            '#descriptionEdit, #dueDateEdit, #highEdit, #mediumEdit, #lowEdit, #applyEdit'
+        )
+    )
+
+    const active = focussable.indexOf(document.activeElement)
+
+    if (e.shiftKey) {
+        if (active === 0) {
+            e.preventDefault()
+            focussable.at(-1).focus()
+        } else {
+            focussable[active - 1].focus()
+            e.preventDefault()
+        }
+    } else if (active === focussable.length - 1) {
+        e.preventDefault()
+        focussable[0].focus()
+    } else {
+        focussable[active + 1].focus()
+        e.preventDefault()
+    }
+}
+
 const generateUniqueID = () => {
     const maxLength = 8 + Math.ceil(Math.random() * 3)
     let id = ''
@@ -20,6 +72,9 @@ const deleteTodo = (id) => {
 }
 
 const editTodo = (id, desc, date, prio) => {
+    document.removeEventListener('keydown', focusTrap)
+    document.addEventListener('keydown', focusTrapEdit)
+
     const container = document.createElement('div')
     container.id = 'editTodo'
     container.innerHTML = 'Edit Project Data:'
@@ -73,6 +128,7 @@ const editTodo = (id, desc, date, prio) => {
     labelLow.innerHTML = 'Low'
 
     const apply = document.createElement('button')
+    apply.id = 'applyEdit'
     apply.innerHTML = 'Apply'
 
     document.body.style.overflow = 'hidden'
@@ -102,6 +158,9 @@ const editTodo = (id, desc, date, prio) => {
 
     const closeEdit = (event) => {
         if (!container.contains(event.target)) {
+            document.addEventListener('keydown', focusTrap)
+            document.removeEventListener('keydown', focusTrapEdit)
+
             container.remove()
             document.removeEventListener('click', closeEdit)
             document.body.style.overflow = 'auto'
@@ -119,6 +178,9 @@ const editTodo = (id, desc, date, prio) => {
     }
 
     const updateTodo = () => {
+        document.addEventListener('keydown', focusTrap)
+        document.removeEventListener('keydown', focusTrapEdit)
+
         const info = document.getElementById(id).querySelectorAll('.info')
         info[0].innerHTML = textArea.innerHTML
         info[1].innerHTML = dueDateInfo.value
@@ -290,5 +352,7 @@ const toggleAddButton = () => {
 addNewTodo.addEventListener('click', addNewTodoItem)
 description.addEventListener('input', toggleAddButton)
 dueDate.addEventListener('change', toggleAddButton)
+
+document.addEventListener('keydown', focusTrap)
 
 window.addEventListener('load', loadSessionStorage)
