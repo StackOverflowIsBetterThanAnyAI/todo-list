@@ -3,7 +3,61 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Todo List</title>
     </head>
-    <body></body>
+    <body>
+        <h1>Todo List</h1>
+        <main id="main">
+            <div class="newTodoContainer low">
+                <div>
+                    <div>Add New Project</div>
+                    <button id="addNewTodo" disabled>+</button>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea
+                        id="description"
+                        rows="3"
+                        placeholder="Description of the Task."
+                    ></textarea>
+                </div>
+                <div>
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" />
+                </div>
+                <form>
+                    <label>Priority</label>
+                    <div>
+                        <input
+                            class="radio"
+                            type="radio"
+                            id="high"
+                            value="High"
+                            name="priority"
+                            !checked
+                        />
+                        <label for="high">High</label>
+                        <input
+                            class="radio"
+                            type="radio"
+                            id="medium"
+                            value="Medium"
+                            name="priority"
+                            checked
+                        />
+                        <label for="medium">Medium</label>
+                        <input
+                            class="radio"
+                            type="radio"
+                            id="low"
+                            value="Low"
+                            name="priority"
+                            !checked
+                        />
+                        <label for="low">Low</label>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
 </html>
